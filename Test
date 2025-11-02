@@ -1,0 +1,72 @@
+using System.Text;
+using System.Text.Json;
+using RabbitMQ.Client;
+
+// ===== 설정 =====
+string host = "127.0.0.1";
+int    port = 5672;
+string vhost = "/";
+string user = "guest";
+string pass = "guest";
+string queue = "orders_q";
+int    totalMessages = 10_000;   // 보낼 메시지 수
+int    perMessageDelayMs = 0;    // 메시지 간 지연(ms). 테스트용 0~1로 조정
+
+// ===== 연결/채널 =====
+var factory = new ConnectionFactory
+{
+    HostName = host,
+    Port = port,
+    VirtualHost = vhost,
+    UserName = user,
+    Password = pass,
+    DispatchConsumersAsync = false
+};
+
+using var conn = factory.CreateConnection();
+using var ch = conn.CreateModel();
+
+// 내구성 큐 선언 (컨슈머와 동일 이름/옵션)
+ch.QueueDeclare(queue: queue, durable: true, exclusive: false, autoDelete: false);
+
+// 퍼시스턴트 메시지 옵션
+var props = ch.CreateBasicProperties();
+props.DeliveryMode = 2; // 2 = persistent
+
+// (선택) 퍼블리셔 컨펌으로 신뢰성 강화
+ch.ConfirmSelect();
+
+Console.WriteLine($"→ Publishing {totalMessages:N0} messages to queue '{queue}' ...");
+
+for (int i = 1; i <= totalMessages; i++)
+{
+    var msg = new OrderMsg(
+        Id: i,
+        CustNo: $"C{i:000000}",
+        Amount: 100m + (i % 1000),
+        OrderTs: DateTime.UtcNow  // ISO8601로 직렬화됨
+    );
+
+    var json = JsonSerializer.Serialize(msg);
+    var body = Encoding.UTF8.GetBytes(json);
+
+    // 디폴트 익스체인지 사용: routingKey=queue
+    ch.BasicPublish(exchange: "", routingKey: queue, basicProperties: props, body: body);
+
+    // (선택) 특정 주기마다 컨펌 확인
+    if (i % 1000 == 0)
+    {
+        ch.WaitForConfirmsOrDie(TimeSpan.FromSeconds(5));
+        Console.WriteLine($"  - published {i:N0}");
+    }
+
+    if (perMessageDelayMs > 0)
+        Thread.Sleep(perMessageDelayMs);
+}
+
+// 마지막 남은 컨펌
+ch.WaitForConfirmsOrDie(TimeSpan.FromSeconds(5));
+
+Console.WriteLine("✔ Done.");
+
+public record OrderMsg(int Id, string CustNo, decimal Amount, DateTime OrderTs);
