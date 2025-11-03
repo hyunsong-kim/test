@@ -1,0 +1,103 @@
+using System.Collections.Concurrent;
+using System.Timers;
+using RabbitMQ.Client;
+using Newtonsoft.Json;
+using System.Text;
+
+public sealed class BatchingPublisher : IDisposable
+{
+    readonly IConnection _conn;
+    readonly IModel _ch;
+    readonly IBasicProperties _props;
+    readonly ConcurrentQueue<string> _q = new ConcurrentQueue<string>();
+    readonly Timer _tick;
+    readonly object _flushLock = new object();
+    volatile bool _flushing = false;
+
+    public int FlushSize { get; }
+    public int PeriodicMs { get; }
+    public int MaxQueue { get; }
+
+    const string EX = "bulk.ex";
+
+    public BatchingPublisher(int flushSize = 500, int periodicMs = 200, int maxQueue = 100_000,
+                             string host="localhost", string user="guest", string pass="guest")
+    {
+        FlushSize = Math.Max(1, flushSize);
+        PeriodicMs = Math.Max(50, periodicMs);
+        MaxQueue = Math.Max(FlushSize*4, maxQueue);
+
+        var f = new ConnectionFactory {
+            HostName = host, UserName = user, Password = pass,
+            AutomaticRecoveryEnabled = true, NetworkRecoveryInterval = TimeSpan.FromSeconds(5)
+        };
+        _conn = f.CreateConnection();
+        _ch = _conn.CreateModel();
+        _ch.ExchangeDeclare(EX, ExchangeType.Direct, durable:true);
+        _ch.ConfirmSelect();
+
+        _props = _ch.CreateBasicProperties();
+        _props.Persistent = true; _props.ContentType = "application/json";
+
+        _tick = new Timer(PeriodicMs);
+        _tick.Elapsed += (_, __) => TryFlush();
+        _tick.AutoReset = true; _tick.Start();
+    }
+
+    // 큐가 너무 크면 false 반환해서 호출자가 백프레셔 처리(대기/드롭/로그 등)
+    public bool Enqueue(string table, string key, object payload)
+    {
+        if (_q.Count >= MaxQueue) return false;
+
+        var json = JsonConvert.SerializeObject(new { Table=table, Key=key, Payload=payload, Ts=DateTime.UtcNow });
+        _q.Enqueue(json);
+
+        if (_q.Count >= FlushSize) TryFlush();
+        return true;
+    }
+
+    void TryFlush()
+    {
+        if (_flushing) return;
+        lock (_flushLock)
+        {
+            if (_flushing) return;
+            _flushing = true;
+        }
+
+        try
+        {
+            if (_q.IsEmpty) return;
+
+            // 한 배치 모으기
+            var batch = new List<string>(FlushSize);
+            while (batch.Count < FlushSize && _q.TryDequeue(out var msg))
+                batch.Add(msg);
+
+            if (batch.Count == 0) return;
+
+            // 연속 발행 후 한꺼번에 컨펌
+            foreach (var json in batch)
+            {
+                var body = Encoding.UTF8.GetBytes(json);
+                _ch.BasicPublish(EX, "bulk", mandatory:true, basicProperties:_props, body:body);
+            }
+            _ch.WaitForConfirmsOrDie(TimeSpan.FromSeconds(10));
+        }
+        finally
+        {
+            _flushing = false;
+        }
+    }
+
+    public void Dispose()
+    {
+        _tick?.Stop();
+        // 잔여 플러시
+        while (!_q.IsEmpty) TryFlush();
+
+        _ch?.Close(); _conn?.Close();
+        _ch?.Dispose(); _conn?.Dispose();
+        _tick?.Dispose();
+    }
+}
