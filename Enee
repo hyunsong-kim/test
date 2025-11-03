@@ -1,0 +1,105 @@
+using System;
+using System.Text;
+using System.Text.Json;
+using RabbitMQ.Client;
+
+namespace RmqProducerApp
+{
+    /// <summary>
+    /// RabbitMQ Producer 클래스
+    ///  - 큐 연결, 메시지 직렬화 및 발행 담당
+    /// </summary>
+    public class RabbitMqProducer : IDisposable
+    {
+        private readonly IConnection _connection;
+        private readonly IModel _channel;
+        private readonly string _queueName;
+        private readonly IBasicProperties _props;
+
+        public RabbitMqProducer(string host, string user, string pass, string queueName = "orders_q", int port = 5672)
+        {
+            _queueName = queueName;
+
+            var factory = new ConnectionFactory()
+            {
+                HostName = host,
+                Port = port,
+                UserName = user,
+                Password = pass,
+                VirtualHost = "/",
+                DispatchConsumersAsync = false
+            };
+
+            _connection = factory.CreateConnection();
+            _channel = _connection.CreateModel();
+
+            // 큐 존재 확인 (없으면 생성)
+            _channel.QueueDeclare(queue: _queueName,
+                                  durable: true,
+                                  exclusive: false,
+                                  autoDelete: false,
+                                  arguments: null);
+
+            // 내구성 메시지 설정
+            _props = _channel.CreateBasicProperties();
+            _props.DeliveryMode = 2; // Persistent
+        }
+
+        /// <summary>
+        /// 주문 데이터를 JSON으로 직렬화하여 큐로 전송
+        /// </summary>
+        public void SendOrder(Order order)
+        {
+            string json = JsonSerializer.Serialize(order);
+            byte[] body = Encoding.UTF8.GetBytes(json);
+
+            _channel.BasicPublish(
+                exchange: "",
+                routingKey: _queueName,
+                basicProperties: _props,
+                body: body);
+
+            Console.WriteLine($" [>] Sent: {order.Id} ({order.CustNo})");
+        }
+
+        /// <summary>
+        /// 다수 메시지를 일괄 전송 (테스트용)
+        /// </summary>
+        public void SendBatch(int count)
+        {
+            Console.WriteLine($"Publishing {count:N0} messages...");
+            for (int i = 1; i <= count; i++)
+            {
+                var order = new Order
+                {
+                    Id = i,
+                    CustNo = $"C{i:0000}",
+                    Amount = 1000 + (i % 100),
+                    OrderTs = DateTime.UtcNow
+                };
+                SendOrder(order);
+
+                if (i % 1000 == 0)
+                    Console.WriteLine($"  -> {i:N0} messages sent");
+            }
+            Console.WriteLine("✔ All messages sent!");
+        }
+
+        public void Dispose()
+        {
+            _channel?.Close();
+            _connection?.Close();
+        }
+    }
+
+    /// <summary>
+    /// 메시지 구조체 (JSON으로 직렬화됨)
+    /// </summary>
+    public class Order
+    {
+        public int Id { get; set; }
+        public string CustNo { get; set; } = "";
+        public decimal Amount { get; set; }
+        public DateTime OrderTs { get; set; }
+    }
+}
