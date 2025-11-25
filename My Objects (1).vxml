@@ -1,0 +1,1969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vxml:Document xmlns:vxml="http://www.vms-solutions.com/mozart/vxml/2012/1" xmlns:def="definitions" xmlns:ref="references" ContentType="dataclass" ContentKey="My Objects" xmlns="Mozart.Task.Execution.Modeling, Version=2024.126.0.161, Culture=neutral, PublicKeyToken=null" xmlns:ctm="clr-namespace:Mozart.Task.Model;assembly:Mozart.Task.Model, Version=2024.126.0.161, Culture=neutral, PublicKeyToken=null" xmlns:cdm="clr-namespace:Mozart.DataActions.Metadata;assembly:Mozart.DataActions, Version=2024.126.0.161, Culture=neutral, PublicKeyToken=null" xmlns:css="clr-namespace:Mozart.SeePlan.Semicon.Simulation;assembly:Mozart.SeePlan.Semicon, Version=2024.126.0.147, Culture=neutral, PublicKeyToken=null" xmlns:css2="clr-namespace:Mozart.SeePlan.Semicon.DataModel;assembly:Mozart.SeePlan.Semicon, Version=2024.126.0.147, Culture=neutral, PublicKeyToken=null" xmlns:css3="clr-namespace:Mozart.SeePlan.Simulation;assembly:Mozart.SeePlan, Version=2024.126.0.147, Culture=neutral, PublicKeyToken=null" xmlns:csd="clr-namespace:Mozart.SeePlan.DataModel;assembly:Mozart.SeePlan, Version=2024.126.0.147, Culture=neutral, PublicKeyToken=null" xmlns:css4="clr-namespace:Mozart.SeePlan.Semicon.Pegging;assembly:Mozart.SeePlan.Semicon, Version=2024.126.0.147, Culture=neutral, PublicKeyToken=null">
+  <Content>
+    <FDataClassRoot Name="My Objects">
+      <DataMarts>
+        <FDataMarts Name="DataMarts">
+          <Children Capacity="4">
+            <FDataMartRoot Name="InputMart">
+              <Children Capacity="64">
+                <FDataMartFolder Name="Simulation">
+                  <Children Capacity="16">
+                    <FDataMartObject Name="HandlingBatchIndex" DataType="int" ContainerInitializer="1" />
+                    <FDataMartObject Name="ScenarioID" DataType="string" />
+                    <FDataMartObject Name="ToolingMap" DataType="custom.FabTooling" CollectionContainer="True" ContainerType="MultiDictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+                    <FDataMartObject Name="WaferStartLotIndex" DataType="int" ContainerInitializer="1" />
+                  </Children>
+                </FDataMartFolder>
+                <FDataMartFolder Name="My Objects">
+                  <Children Capacity="4">
+                    <FDataMartFolder Name="Common" />
+                    <FDataMartFolder Name="Simulation">
+                      <Children Capacity="4">
+                        <FDataMartFolder Name="CycleTimeInfo" />
+                      </Children>
+                    </FDataMartFolder>
+                  </Children>
+                </FDataMartFolder>
+                <FDataMartObject Name="ApplyCrossFabLimit" DataType="bool" />
+                <FDataMartObject Name="ApplyDeliveryTime" DataType="bool" />
+                <FDataMartObject Name="ApplyStacking" DataType="bool" />
+                <FDataMartObject Name="ApplyStepRework" DataType="bool" />
+                <FDataMartObject Name="ApplyStepSampling" DataType="bool" />
+                <FDataMartObject Name="ApplyStepYield" DataType="bool" />
+                <FDataMartObject Name="ApplyTransportSystem" DataType="bool" />
+                <FDataMartObject Name="BOMParentChildMap" DataType="string" CollectionContainer="True" ContainerType="MultiDictionary" ContainerKeys="string" />
+                <FDataMartObject Name="CurrentWipLogSeq" DataType="Tuple&lt;DateTime, int&gt;" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="DefaultAltProcTime" DataType="Mozart.SeePlan.DataModel.ProcTimeInfo" />
+                <FDataMartObject Name="DoLotSizeMerge" DataType="bool" />
+                <FDataMartObject Name="EqpSetupDic" DataType="string" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="ExcludeOutputTables" DataType="string" CollectionContainer="True" ContainerType="HashSet" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="FabInLimit" DataType="double" />
+                <FDataMartObject Name="FabOutQty" DataType="double" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="DateTime" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="InPlanRule" DataType="FabInPlanRule" />
+                <FDataMartObject Name="InTargets" DataType="FabSemiconPegTarget" CollectionContainer="True" ContainerType="List" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="InTargetsByWeek" DataType="FabSemiconPegTarget" CollectionContainer="True" ContainerType="MultiDictionary" ContainerKeys="DateTime" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="LotMergeSize" DataType="float" />
+                <FDataMartObject Name="LotSize" DataType="float" />
+                <FDataMartObject Name="ManualEventAo" DataType="Mozart.Simulation.Engine.ActiveObject" />
+                <FDataMartObject Name="ManualEventCtx" DataType="ManualEventContext" />
+                <FDataMartObject Name="ManualEvents" DataType="List&lt;ManualEventInfo&gt;" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="DateTime" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="PartLayerEqpGroup" DataType="string" CollectionContainer="True" ContainerType="DoubleDictionary" ContainerKeys="string;int" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="PartRouteMap" DataType="FabSemiconProcess" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="PegTargetInfo" DataType="DateTime" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="PhotoStepWipDict" DataType="int" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="PlanStartDay" DataType="DateTime" />
+                <FDataMartObject Name="RandomNumberGenerator" DataType="Random" />
+                <FDataMartObject Name="RandomNumberGenerator2" DataType="Random" />
+                <FDataMartObject Name="ResourceProcTimeDict" DataType="Mozart.SeePlan.DataModel.ProcTimeInfo" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="StandardPotDays" DataType="double" />
+                <FDataMartObject Name="StandbyTimeOutputs" DataType="output.STANDBY_TIME" CollectionContainer="True" ContainerType="MultiDictionary" ContainerKeys="FabAoEquipment" ContainerInitializerAuto="True" />
+                <FDataMartObject Name="TransferTimePdfConfig" DataType="custom.StochasticConfig" />
+                <FDataMartObject Name="UseBOM" DataType="bool" />
+                <FDataMartObject Name="WorkstationProcTimeDict" DataType="Mozart.SeePlan.DataModel.ProcTimeInfo" CollectionContainer="True" ContainerType="Dictionary" ContainerKeys="string" ContainerInitializerAuto="True" />
+              </Children>
+            </FDataMartRoot>
+          </Children>
+        </FDataMarts>
+      </DataMarts>
+      <Constants>
+        <FConstantItem Name="Constants">
+          <ArgumentArray>
+            <ctm:ArgumentInfo-Array>
+              <ctm:ArgumentInfo Category="WipGroup" Name="WIP_GROUP_STEP_WIP" TypeEnum="String">
+                <InitialValue>
+                  <String>WIP_GROUP_STEP_WIP</String>
+                </InitialValue>
+              </ctm:ArgumentInfo>
+              <ctm:ArgumentInfo Category="ModelContext" Name="CTX_DAY_STOPWATCH" TypeEnum="String">
+                <InitialValue>
+                  <String>#DayStopWatch</String>
+                </InitialValue>
+              </ctm:ArgumentInfo>
+            </ctm:ArgumentInfo-Array>
+          </ArgumentArray>
+        </FConstantItem>
+      </Constants>
+      <Enums>
+        <FDataClassFolder Name="Enums">
+          <Children Capacity="32">
+            <FDataClassItem Name="LogType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="LogType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="INFO" PropertyType="" />
+                    <cdm:PropertyMeta Name="WARNING" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="BatchingEventType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="BatchingEventType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="SimStart" PropertyType="" />
+                    <cdm:PropertyMeta Name="UpstreamLotArrival" PropertyType="" />
+                    <cdm:PropertyMeta Name="AtStepLotArrival" PropertyType="" />
+                    <cdm:PropertyMeta Name="IdleTimer" PropertyType="" />
+                    <cdm:PropertyMeta Name="LoadingStart" PropertyType="" />
+                    <cdm:PropertyMeta Name="LoadingEnd" PropertyType="" />
+                    <cdm:PropertyMeta Name="IdlePort" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpDownType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="EqpDownType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="PM" PropertyType="" />
+                    <cdm:PropertyMeta Name="BM" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="RunMode" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="RunMode" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Simulator" PropertyType="" />
+                    <cdm:PropertyMeta Name="Scheduler" PropertyType="" />
+                    <cdm:PropertyMeta Name="Simulation2Scheduler" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="DistFunctionType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="DistFunctionType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Exponential" PropertyType="" />
+                    <cdm:PropertyMeta Name="Normal" PropertyType="" />
+                    <cdm:PropertyMeta Name="Uniform" PropertyType="" />
+                    <cdm:PropertyMeta Name="Constant" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabInPlanRule" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="FabInPlanRule" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Demand" PropertyType="">
+                      <DefaultValue>
+                        <String>1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="FabInPlan" PropertyType="">
+                      <DefaultValue>
+                        <String>2</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ConstantWip" PropertyType="">
+                      <DefaultValue>
+                        <String>3</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="None" PropertyType="">
+                      <DefaultValue>
+                        <String>0</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StackType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="StackType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Y" PropertyType="" Description="Stacking step. Stacking 호기로만 진행가능" />
+                    <cdm:PropertyMeta Name="D" PropertyType="" Description="De-stacking step. Stacking 호기를 선호하지만, 다른 호기로도 진행가능" />
+                    <cdm:PropertyMeta Name="S" PropertyType="" Description="FirstLayer step" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ArgsGroup" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="ArgsGroup" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Lot_Wip" PropertyType="" />
+                    <cdm:PropertyMeta Name="Lot_InPlan" PropertyType="" />
+                    <cdm:PropertyMeta Name="Bop_Step" PropertyType="" />
+                    <cdm:PropertyMeta Name="Resource_SimType" PropertyType="" />
+                    <cdm:PropertyMeta Name="Resource_EqpLocation" PropertyType="" />
+                    <cdm:PropertyMeta Name="Resource_Tooling" PropertyType="" />
+                    <cdm:PropertyMeta Name="Logic_Photo" PropertyType="" />
+                    <cdm:PropertyMeta Name="Logic_Qtime" PropertyType="" />
+                    <cdm:PropertyMeta Name="Resource_Eqp" PropertyType="" />
+                    <cdm:PropertyMeta Name="Arrange_StepTime" PropertyType="" />
+                    <cdm:PropertyMeta Name="Logic_Batching" PropertyType="" />
+                    <cdm:PropertyMeta Name="Logic_Dispatching" PropertyType="" />
+                    <cdm:PropertyMeta Name="Simulation_Output" PropertyType="" />
+                    <cdm:PropertyMeta Name="Simulation_Report" PropertyType="" />
+                    <cdm:PropertyMeta Name="Simulation_Run" PropertyType="" />
+                    <cdm:PropertyMeta Name="Lot_Default" PropertyType="" />
+                    <cdm:PropertyMeta Name="Resource_Bucketing" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ManualEventTaskType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="ManualEventTaskType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="WakeUpEqp" PropertyType="" />
+                    <cdm:PropertyMeta Name="CallBatchBuild" PropertyType="" />
+                    <cdm:PropertyMeta Name="OnEqpUpStartTime" PropertyType="" />
+                    <cdm:PropertyMeta Name="CallRemoveAndReEnter" PropertyType="" />
+                    <cdm:PropertyMeta Name="CallEnqueue" PropertyType="" />
+                    <cdm:PropertyMeta Name="CallRemoveFromQueue" PropertyType="" />
+                    <cdm:PropertyMeta Name="UpdatePartStepArrange" PropertyType="" />
+                    <cdm:PropertyMeta Name="ActivateProcessInhibit" PropertyType="" />
+                    <cdm:PropertyMeta Name="ExpireProcessInhibit" PropertyType="" />
+                    <cdm:PropertyMeta Name="OnAssignQtWorkload" PropertyType="" />
+                    <cdm:PropertyMeta Name="ExpireReworkEffective" PropertyType="" />
+                    <cdm:PropertyMeta Name="HandleInitialTransfer" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="QualityLossType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="QualityLossType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="STEP_YIELD_SCRAP" PropertyType="" />
+                    <cdm:PropertyMeta Name="STEP_REWORK" PropertyType="" />
+                    <cdm:PropertyMeta Name="EQP_REWORK" PropertyType="" />
+                    <cdm:PropertyMeta Name="BOH_REWORK" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpDownCondType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="EqpDownCondType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="TBM" PropertyType="" Description="Time based" />
+                    <cdm:PropertyMeta Name="CBM" PropertyType="" Description="Count based" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="RouteType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="RouteType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="STANDARD" PropertyType="" />
+                    <cdm:PropertyMeta Name="MAIN" PropertyType="" />
+                    <cdm:PropertyMeta Name="REWORK" PropertyType="" />
+                    <cdm:PropertyMeta Name="LOT" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ReworkProcessingType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="ReworkProcessingType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Route" PropertyType="" />
+                    <cdm:PropertyMeta Name="Step" PropertyType="" />
+                    <cdm:PropertyMeta Name="Time" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="HandlingBatchSplitType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="HandlingBatchSplitType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Scrap" PropertyType="" />
+                    <cdm:PropertyMeta Name="Rework" PropertyType="" />
+                    <cdm:PropertyMeta Name="FabOut" PropertyType="" />
+                    <cdm:PropertyMeta Name="UnitBatch" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="QtimePriority" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="QtimePriority" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="CRITICAL" PropertyType="">
+                      <DefaultValue>
+                        <String>
+                        </String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="REWORK" PropertyType="">
+                      <DefaultValue>
+                        <String>
+                        </String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ChuckSwapRule" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="ChuckSwapRule" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Ignore" PropertyType="" />
+                    <cdm:PropertyMeta Name="Rate" PropertyType="" />
+                    <cdm:PropertyMeta Name="Rule" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ToolingType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="ToolingType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Reticle" PropertyType="" />
+                    <cdm:PropertyMeta Name="ProbeCard" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="RNGType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="RNGType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Default" PropertyType="" />
+                    <cdm:PropertyMeta Name="Isolation" PropertyType="">
+                      <DefaultValue>
+                        <String>
+                        </String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="CustomDispatchType" IsEnum="True">
+              <Content>
+                <DataClassMeta Name="CustomDispatchType" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="JOB_PREP" PropertyType="" />
+                    <cdm:PropertyMeta Name="PORT_RSV" PropertyType="" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+          </Children>
+        </FDataClassFolder>
+      </Enums>
+      <Children Capacity="4">
+        <FDataClassFolder Name="Simulation">
+          <Children Capacity="64">
+            <FDataClassItem Name="FabSemiconLot">
+              <Content>
+                <DataClassMeta IsEntityObject="True" Name="FabSemiconLot" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css:SemiconLot" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="FabWipInfo" PropertyType="FabWipInfo" IsConst="True">
+                      <DefaultValue>
+                        <String>=WipInfo as FabWipInfo</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="CurrentFabPlan" PropertyType="FabPlanInfo" IsConst="True">
+                      <DefaultValue>
+                        <String>=CurrentPlan as FabPlanInfo</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="FabProduct" PropertyType="FabProduct" IsConst="True">
+                      <DefaultValue>
+                        <String>=Product as FabProduct</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="IsWipHandle" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsRunWipHandle" PropertyType="bool" IsConst="True">
+                      <DefaultValue>
+                        <String>=FabWipInfo.IsBohRun &amp;&amp; IsWipHandle</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="EtaDict" PropertyType="MultiDictionary&lt;SemiconStep,FabAoEquipment&gt;">
+                      <DefaultValue>
+                        <String>=new MultiDictionary&lt;SemiconStep,FabAoEquipment&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ReservationInfos" PropertyType="Dictionary&lt;string,custom.ReservationInfo&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string,ReservationInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="QtHoldTime" PropertyType="Mozart.Simulation.Engine.Time" />
+                    <cdm:PropertyMeta Name="LastFilterReason" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Parent" PropertyType="FabSemiconLot" />
+                    <cdm:PropertyMeta Name="MergeInfo" PropertyType="MergeInfo" />
+                    <cdm:PropertyMeta Name="IsNoArrangeWait" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="CurrentPartID" PropertyType="string" IsConst="True">
+                      <DefaultValue>
+                        <String>=FabProduct.PartID</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="CurrentArranges" PropertyType="Dictionary&lt;string,EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string,EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="TargetStepArranges" PropertyType="MultiDictionary&lt;string,EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>=new MultiDictionary&lt;string,EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="IsVanishing" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsHotLot" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="TargetStepTemp" PropertyType="string" />
+                    <cdm:PropertyMeta Name="OnBackupDelay" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="CurrentAttribute" PropertyType="PartStepAttribute" />
+                    <cdm:PropertyMeta Name="CurrentFabStep" PropertyType="FabSemiconStep" IsConst="True">
+                      <DefaultValue>
+                        <String>= CurrentStep as FabSemiconStep</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ApplyPTMinsAtBOH" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="ActiveStackDict" PropertyType="Dictionary&lt;string,StackActiveInfo&gt;" Description="Key : STACK_GROUP">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;string,StackActiveInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="CurrentActiveStackInfo" PropertyType="StackActiveInfo" />
+                    <cdm:PropertyMeta Name="EvaluatePriority" PropertyType="Dictionary&lt;string,int&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;string,int&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="CurrentEvaluatePriority" PropertyType="int" />
+                    <cdm:PropertyMeta Name="ForwardPegInfoList" PropertyType="List&lt;ForwardPegInfo&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;ForwardPegInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="CurrentDeliveryInfo" PropertyType="Dictionary&lt;string,DeliveryTimeInfo&gt;" />
+                    <cdm:PropertyMeta Name="IsYieldScrapped" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="CurrentRework" PropertyType="ReworkActivation" />
+                    <cdm:PropertyMeta Name="OnHandlingBatch" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="CurrentBOM" PropertyType="BOMInfo" />
+                    <cdm:PropertyMeta Name="IsWaitForKitting" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="Location" PropertyType="Location" />
+                    <cdm:PropertyMeta Name="LastLocation" PropertyType="Location" />
+                    <cdm:PropertyMeta Name="ReservedLocation" PropertyType="Location" />
+                    <cdm:PropertyMeta Name="MovingState" PropertyType="LocationType" />
+                    <cdm:PropertyMeta Name="MovingStateChangeTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="RemainTransferTime" PropertyType="Mozart.Simulation.Engine.Time" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabPlanInfo">
+              <Content>
+                <DataClassMeta Name="FabPlanInfo" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:PlanInfo" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Arrange" PropertyType="EqpArrange" />
+                    <cdm:PropertyMeta Name="ArrivalTimeStr" PropertyType="string" />
+                    <cdm:PropertyMeta Name="PartID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="DeliveryDict" PropertyType="Mozart.Collections.MultiDictionary&lt;Mozart.Simulation.Engine.Time,FabAoEquipment&gt;" />
+                    <cdm:PropertyMeta Name="ArrivalTimeDict" PropertyType="Dictionary&lt;string,DateTime&gt;" />
+                    <cdm:PropertyMeta Name="IsIntercepted" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="OriginalArrivalTime" PropertyType="DateTime">
+                      <DefaultValue>
+                        <String>=DateTime.MinValue</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="EqpReworkInfo" PropertyType="EqpReworkInfo" />
+                    <cdm:PropertyMeta Name="ProcTime" PropertyType="ProcTimeInfo" />
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" IsConst="True">
+                      <DefaultValue>
+                        <String>=string.IsNullOrEmpty(ResID) ? "-" : ResID</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="HasStepSkipTime" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="HasChuckSwapLoss" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="NeedSetupChambers" PropertyType="HashSet&lt;string&gt;">
+                      <DefaultValue>
+                        <String>=new HashSet&lt;string&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconEqp">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" MapType="EQP" Name="FabSemiconEqp" ToStringExpr="">
+                  <BaseMappings>
+                    <Entry>
+                      <String>StepGroup</String>
+                      <String>AREA_ID</String>
+                    </Entry>
+                    <Entry>
+                      <String>ResID</String>
+                      <String>EQP_ID</String>
+                    </Entry>
+                    <Entry>
+                      <String>ResGroup</String>
+                      <String>EQP_GROUP</String>
+                    </Entry>
+                  </BaseMappings>
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:SemiconEqp" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="SimObject" PropertyType="FabAoEquipment" />
+                    <cdm:PropertyMeta Name="PMList" PropertyType="List&lt;Mozart.SeePlan.DataModel.PMSchedule&gt;" />
+                    <cdm:PropertyMeta Name="PresetDict" PropertyType="Dictionary&lt;string, FabWeightPreset&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string,FabWeightPreset&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="QtEqp" PropertyType="QtEqp" />
+                    <cdm:PropertyMeta Name="LocationInfo" PropertyType="EqpLocation" />
+                    <cdm:PropertyMeta Name="DeliveryTimeDict" PropertyType="Dictionary&lt;string,DeliveryTimeInfo&gt;" />
+                    <cdm:PropertyMeta Name="EqpUpTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="QuantityDownConfigs" PropertyType="List&lt;EqpDownConditionalConfig&gt;" />
+                    <cdm:PropertyMeta Name="EqpDownTags" PropertyType="Dictionary&lt;PMSchedule,EqpDownTag&gt;" />
+                    <cdm:PropertyMeta Name="LineID_" PropertyType="string" />
+                    <cdm:PropertyMeta Name="OrgSimType" PropertyType="string" />
+                    <cdm:PropertyMeta Name="IsPhotoEqp" PropertyType="bool" IsConst="True">
+                      <DefaultValue>
+                        <String>=StepGroup == Helper.GetConfig(ArgsGroup.Simulation_Report).photoArea</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="BackupEqps" PropertyType="List&lt;FabSemiconEqp&gt;" />
+                    <cdm:PropertyMeta Name="SetupInfos" PropertyType="Mozart.Collections.DoubleDictionary&lt;string,string,SwitchTimeInfo&gt;">
+                      <DefaultValue>
+                        <String>= new Mozart.Collections.DoubleDictionary&lt;string,string,SwitchTimeInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ProcessInhibitHistory" PropertyType="Dictionary&lt;EqpDownTag,Tuple&lt;DateTime,DateTime&gt;&gt;" />
+                    <cdm:PropertyMeta Name="ScannerGeneration" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ReworkInfos" PropertyType="List&lt;EqpReworkInfo&gt;" />
+                    <cdm:PropertyMeta Name="DailyLimitPostStackPm" PropertyType="double" />
+                    <cdm:PropertyMeta Name="EqpYieldRate" PropertyType="double">
+                      <DefaultValue>
+                        <String>=1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="MinRunsAfterSwitch" PropertyType="Dictionary&lt;string,int&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;string,int&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ChuckSwapLossTime" PropertyType="TimeSpan" />
+                    <cdm:PropertyMeta Name="UnitBatchInfo" PropertyType="UnitBatchInfo" />
+                    <cdm:PropertyMeta Name="ForceStandbyRate" PropertyType="double" Description="하루동안의 ForceStandby 시간 비율" />
+                    <cdm:PropertyMeta Name="ForceStandbyProbability" PropertyType="double" Description="디스패칭 당 ForceStandby 발생 확률" />
+                    <cdm:PropertyMeta Name="WriteStandbyTime" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="ChuckLossRate" PropertyType="double" />
+                    <cdm:PropertyMeta Name="ToolingInfo" PropertyType="EqpTooling">
+                      <DefaultValue>
+                        <String>=new EqpTooling()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="DoSetupOnTrackOut" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="MaxWafersAvoidSwitch" PropertyType="int" />
+                    <cdm:PropertyMeta Name="HasPort" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="Ports" PropertyType="List&lt;Port&gt;" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>ResID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconSubEqp">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabSemiconSubEqp" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:ISubEqp" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Parent" PropertyType="Mozart.SeePlan.Semicon.DataModel.SemiconEqp" />
+                    <cdm:PropertyMeta Name="SubEqpID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="State" PropertyType="Mozart.SeePlan.DataModel.ResourceState" />
+                    <cdm:PropertyMeta Name="LastPlan" PropertyType="custom.FabPlanInfo" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>SubEqpID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpArrange">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" MapType="ARRANGE" Name="EqpArrange" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="LineID" PropertyType="string" MapField="LINE_ID" />
+                    <cdm:PropertyMeta Name="PartID" PropertyType="string" MapField="PART_ID" />
+                    <cdm:PropertyMeta Name="StepID" PropertyType="string" MapField="STEP_ID" />
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" MapField="EQP_ID" />
+                    <cdm:PropertyMeta Name="RecipeID" PropertyType="string" MapField="RECIPE_ID" />
+                    <cdm:PropertyMeta Name="ToolingName" PropertyType="string" MapField="TOOLING_NAME" />
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabSemiconEqp" />
+                    <cdm:PropertyMeta Name="SubEqps" PropertyType="HashSet&lt;custom.FabSemiconSubEqp&gt;">
+                      <DefaultValue>
+                        <String>=new HashSet&lt;custom.FabSemiconSubEqp&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ProcTime" PropertyType="Mozart.SeePlan.DataModel.ProcTimeInfo" />
+                    <cdm:PropertyMeta Name="BatchSpec" PropertyType="FabBatchSpec" />
+                    <cdm:PropertyMeta Name="OrgTact" PropertyType="double" />
+                    <cdm:PropertyMeta Name="OrgFlow" PropertyType="double" />
+                    <cdm:PropertyMeta Name="IsBackup" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="StartTime" PropertyType="DateTime" MapField="START_DATETIME" />
+                    <cdm:PropertyMeta Name="EndTime" PropertyType="DateTime" MapField="END_DATETIME" />
+                    <cdm:PropertyMeta Name="FlowTimePdfConfig" PropertyType="StochasticConfig" />
+                    <cdm:PropertyMeta Name="IsRecipeInhibit" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="SetupName" PropertyType="string" />
+                    <cdm:PropertyMeta Name="MinLotsToSwitch" PropertyType="int" />
+                    <cdm:PropertyMeta Name="MinWafersToSwitch" PropertyType="int" />
+                    <cdm:PropertyMeta Name="MinRunsAfterSwitch" PropertyType="int" />
+                    <cdm:PropertyMeta Name="ToolingData" PropertyType="FabToolData" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>PartID</String>
+                            <String>StepID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                        <cdm:DataViewItem Name="EqpView">
+                          <Keys Capacity="4">
+                            <String>EqpID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                        <cdm:DataViewItem Name="EqpRecipeView">
+                          <Keys Capacity="4">
+                            <String>EqpID</String>
+                            <String>RecipeID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                        <cdm:DataViewItem Name="PartStepEqpView">
+                          <Keys Capacity="4">
+                            <String>PartID</String>
+                            <String>StepID</String>
+                            <String>EqpID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabLotETA">
+              <Content>
+                <DataClassMeta Name="FabLotETA" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:LotETA" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Arrange" PropertyType="EqpArrange" />
+                    <cdm:PropertyMeta Name="OnUpstream" PropertyType="bool" IsConst="True">
+                      <DefaultValue>
+                        <String>=Lot.CurrentStep != TargetStep</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="FilterReason" PropertyType="string" />
+                    <cdm:PropertyMeta Name="BatchingKey" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Loop" PropertyType="FabQtLoop" />
+                    <cdm:PropertyMeta Name="CTCache" PropertyType="Tuple&lt;SemiconStep,double&gt;" />
+                    <cdm:PropertyMeta Name="IsOrderingStepStarted" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsAtStepLoadable" PropertyType="bool" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabAoEquipment">
+              <Content>
+                <DataClassMeta RegisteringName="" Name="FabAoEquipment" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css3:AoEquipment" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabSemiconEqp" IsConst="True">
+                      <DefaultValue>
+                        <String>=Target as FabSemiconEqp</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="UpstreamLots" PropertyType="List&lt;LotETA&gt;" />
+                    <cdm:PropertyMeta Name="ReservedBatch" PropertyType="LotBatch" />
+                    <cdm:PropertyMeta Name="NeedUpstreamBatching" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="DispatchingInfo" PropertyType="DispatchingInfo" />
+                    <cdm:PropertyMeta Name="CurrentState" PropertyType="Mozart.SeePlan.Simulation.LoadingStates" />
+                    <cdm:PropertyMeta Name="IsWaitingUD" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsReworkEffective" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="OnProcessInhibit" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="ActiveStackLotDict" PropertyType="Mozart.Collections.MultiDictionary&lt;string,FabSemiconLot&gt;">
+                      <DefaultValue>
+                        <String>= new Mozart.Collections.MultiDictionary&lt;string,FabSemiconLot&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="DelayedStackPM" PropertyType="Tuple&lt;PMSchedule, EqpDownTag&gt;" />
+                    <cdm:PropertyMeta Name="DailyFirstLayerQty" PropertyType="double" />
+                    <cdm:PropertyMeta Name="NextManualWakeUpTime" PropertyType="DateTime">
+                      <DefaultValue>
+                        <String>=DateTime.MaxValue</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="BBTrySeq" PropertyType="int">
+                      <DefaultValue>
+                        <String>=1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="LastBBTryTime" PropertyType="DateTime">
+                      <DefaultValue>
+                        <String>=DateTime.MinValue</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="IsWaitingFS" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="JobPrepCandidates" PropertyType="List&lt;IHandlingBatch&gt;" />
+                    <cdm:PropertyMeta Name="JobPrepLotList" PropertyType="List&lt;IHandlingBatch&gt;" />
+                    <cdm:PropertyMeta Name="ReservedBatchList" PropertyType="List&lt;LotBatch&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;LotBatch&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabBatchSpec">
+              <Content>
+                <DataClassMeta Name="FabBatchSpec" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:IBatchSpec" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="MaxLot" PropertyType="int" />
+                    <cdm:PropertyMeta Name="MinLot" PropertyType="int" />
+                    <cdm:PropertyMeta Name="MaxWafer" PropertyType="int" />
+                    <cdm:PropertyMeta Name="MinWafer" PropertyType="int" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabWeightPreset">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabWeightPreset" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="csd:WeightPreset" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="DispatcherType" PropertyType="DispatcherType" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>Name</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabQtLoop">
+              <Content>
+                <DataClassMeta Name="FabQtLoop" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:IQtLoop" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="ProductID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StartStepID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="EndStepID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ConstType" PropertyType="Mozart.SeePlan.Semicon.DataModel.QtType" />
+                    <cdm:PropertyMeta Name="WarningTime" PropertyType="TimeSpan" />
+                    <cdm:PropertyMeta Name="LimitTime" PropertyType="TimeSpan" />
+                    <cdm:PropertyMeta Name="ControlType" PropertyType="Mozart.SeePlan.Semicon.DataModel.QtControlType" />
+                    <cdm:PropertyMeta Name="AttrSet" PropertyType="Mozart.SeePlan.Semicon.DataModel.AttributeSet" />
+                    <cdm:PropertyMeta Name="QtChains" PropertyType="System.Collections.Generic.List&lt;Mozart.SeePlan.Semicon.DataModel.QtChain&gt;" />
+                    <cdm:PropertyMeta Name="GatePct" PropertyType="float" />
+                    <cdm:PropertyMeta Name="Chain" PropertyType="QtChain" />
+                    <cdm:PropertyMeta Name="IsDummyLoop" PropertyType="bool" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabTooling">
+              <Content>
+                <DataClassMeta Name="FabTooling" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="ToolingType" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToolingID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToolingStatus" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToolingLocation" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToolingUsageState" PropertyType="string" />
+                    <cdm:PropertyMeta Name="LastUpdateDateTime" PropertyType="DateTime" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+              <Children Capacity="4">
+                <FDataClassItem Name="FabReticle">
+                  <Content>
+                    <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabReticle" ToStringExpr="">
+                      <Properties>
+                        <cdm:PropertyMeta Name="KeepStartTime" PropertyType="DateTime" />
+                        <cdm:PropertyMeta Name="KeepEndTime" PropertyType="DateTime" />
+                        <cdm:PropertyMeta Name="SelectableTime" PropertyType="DateTime" />
+                        <cdm:PropertyMeta Name="OnSeized" PropertyType="bool" />
+                        <cdm:PropertyMeta Name="KeepingEqp" PropertyType="FabSemiconEqp" />
+                        <cdm:PropertyMeta Name="AtStepWorkload" PropertyType="float" />
+                      </Properties>
+                      <ViewInfo>
+                        <cdm:DataViewInfo>
+                          <Items Capacity="4">
+                            <cdm:DataViewItem Name="View">
+                              <Keys Capacity="4">
+                                <String>ToolingID</String>
+                              </Keys>
+                            </cdm:DataViewItem>
+                          </Items>
+                        </cdm:DataViewInfo>
+                      </ViewInfo>
+                    </DataClassMeta>
+                  </Content>
+                </FDataClassItem>
+              </Children>
+            </FDataClassItem>
+            <FDataClassItem Name="MergeInfo">
+              <Content>
+                <DataClassMeta Name="MergeInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="MergeStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="Parent" PropertyType="FabWipInfo" />
+                    <cdm:PropertyMeta Name="Childs" PropertyType="List&lt;FabWipInfo&gt;">
+                      <DefaultValue>
+                        <String>=new List&lt;FabWipInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ToolingSelectionInfo">
+              <Content>
+                <DataClassMeta Name="ToolingSelectionInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Tooling" PropertyType="FabTooling" />
+                    <cdm:PropertyMeta Name="WorkloadHrs" PropertyType="float" />
+                    <cdm:PropertyMeta Name="LotList" PropertyType="List&lt;FabSemiconLot&gt;">
+                      <DefaultValue>
+                        <String>=new List&lt;FabSemiconLot&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="SelectYN" PropertyType="string" />
+                    <cdm:PropertyMeta Name="SelectableTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="Location" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Reason" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Lot" PropertyType="FabSemiconLot" />
+                    <cdm:PropertyMeta Name="ToolingName" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToolingType" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToolingList" PropertyType="string" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabQtActivation">
+              <Content>
+                <DataClassMeta Name="FabQtActivation" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:QtActivation" />
+                  </BaseClass>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ReservationInfo">
+              <Content>
+                <DataClassMeta Name="ReservationInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="TargetStep" PropertyType="SemiconStep" />
+                    <cdm:PropertyMeta Name="Batch" PropertyType="LotBatch" />
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabAoEquipment" />
+                    <cdm:PropertyMeta Name="BatchETA" PropertyType="DateTime" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpDownTag">
+              <Content>
+                <DataClassMeta Name="EqpDownTag" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="DownTypeStr" PropertyType="string" />
+                    <cdm:PropertyMeta Name="DownType" PropertyType="EqpDownType" />
+                    <cdm:PropertyMeta Name="DownCondType" PropertyType="EqpDownCondType" />
+                    <cdm:PropertyMeta Name="EventCode" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabSemiconEqp" />
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StartTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="EndTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="DurationSecond" PropertyType="int" />
+                    <cdm:PropertyMeta Name="ConditionalConfig" PropertyType="EqpDownConditionalConfig" />
+                    <cdm:PropertyMeta Name="StochasticConfig" PropertyType="EqpDownStochasticConfig" />
+                    <cdm:PropertyMeta Name="IsStackPm" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="StackPM" PropertyType="StackPMInfo" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ProductMixInfo">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="ProductMixInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Date" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="ProductMix" PropertyType="Dictionary&lt;string, double&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string,double&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ProductPriority" PropertyType="Dictionary&lt;string, int&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string,int&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="RemainQty" PropertyType="double" />
+                    <cdm:PropertyMeta Name="ProductMix2" PropertyType="Dictionary&lt;FabProduct,double&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;FabProduct,double&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="DueDate" PropertyType="DateTime" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>Date</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpDownStochasticConfig">
+              <Content>
+                <DataClassMeta Name="EqpDownStochasticConfig" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabSemiconEqp" />
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="InitBMPdfConfig" PropertyType="StochasticConfig" />
+                    <cdm:PropertyMeta Name="MTTFPdfConfig" PropertyType="StochasticConfig" />
+                    <cdm:PropertyMeta Name="MTTRPdfConfig" PropertyType="StochasticConfig" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabInOutInfo">
+              <Content>
+                <DataClassMeta GenerateContainer="True" ContainerType="DoubleDictionary" ContainerKeys="string;DateTime" Name="FabInOutInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="TARGET_DATE" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="TARGET_WEEK" PropertyType="string" />
+                    <cdm:PropertyMeta Name="TARGET_MONTH" PropertyType="string" />
+                    <cdm:PropertyMeta Name="PART_ID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="FABIN_QTY" PropertyType="float" />
+                    <cdm:PropertyMeta Name="FABOUT_QTY" PropertyType="float" />
+                    <cdm:PropertyMeta Name="WIP_QTY" PropertyType="float" />
+                    <cdm:PropertyMeta Name="SCRAP_QTY" PropertyType="float" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpDownConditionalConfig">
+              <Content>
+                <DataClassMeta Name="EqpDownConditionalConfig" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="DownTypeStr" PropertyType="string" />
+                    <cdm:PropertyMeta Name="DownType" PropertyType="EqpDownType" />
+                    <cdm:PropertyMeta Name="DownCondType" PropertyType="EqpDownCondType" />
+                    <cdm:PropertyMeta Name="EventCode" PropertyType="string" />
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="LimitCount" PropertyType="int" />
+                    <cdm:PropertyMeta Name="CurrentCount" PropertyType="int" />
+                    <cdm:PropertyMeta Name="LastEventTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="MttrPdfConfig" PropertyType="StochasticConfig" />
+                    <cdm:PropertyMeta Name="MttfPdfConfig" PropertyType="StochasticConfig" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ArrangeSchedule">
+              <Content>
+                <DataClassMeta Name="ArrangeSchedule" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="EventTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="ArrangesToAdd" PropertyType="List&lt;EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ArrangesToRemove" PropertyType="List&lt;EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="PartStep" PropertyType="PartStepAttribute" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StackStepInfo">
+              <Content>
+                <DataClassMeta Name="StackStepInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="PartID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StackStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="StackGroupID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StackType" PropertyType="StackType" />
+                    <cdm:PropertyMeta Name="IsFirstLayer" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsLastLayer" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsLastYLayer" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsVeryFirstLayer" PropertyType="bool" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StackActiveInfo">
+              <Content>
+                <DataClassMeta Name="StackActiveInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="StackGroupID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StackEqp" PropertyType="FabSemiconEqp" />
+                    <cdm:PropertyMeta Name="CurrentStackArrange" PropertyType="EqpArrange" />
+                    <cdm:PropertyMeta Name="StackStepInfo" PropertyType="StackStepInfo" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StochasticConfig">
+              <Content>
+                <DataClassMeta Name="StochasticConfig" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="DistFunction" PropertyType="DistFunctionType" />
+                    <cdm:PropertyMeta Name="Mean" PropertyType="double" />
+                    <cdm:PropertyMeta Name="StdDev" PropertyType="double" />
+                    <cdm:PropertyMeta Name="Min" PropertyType="double" />
+                    <cdm:PropertyMeta Name="Max" PropertyType="double" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="SwitchTimeInfo">
+              <Content>
+                <DataClassMeta Name="SwitchTimeInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="FromSetup" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToSetup" PropertyType="string" />
+                    <cdm:PropertyMeta Name="SwitchTime" PropertyType="Mozart.Simulation.Engine.Time" />
+                    <cdm:PropertyMeta Name="SwitchTimePdfConfig" PropertyType="StochasticConfig" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="DeliveryTimeInfo">
+              <Content>
+                <DataClassMeta Name="DeliveryTimeInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="FromBayID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ToBayID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="DeliveryMins" PropertyType="double" />
+                    <cdm:PropertyMeta Name="PenaltyMins" PropertyType="double" />
+                    <cdm:PropertyMeta Name="DeliveryMinsPdfConfig" PropertyType="StochasticConfig" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ManualEventInfo">
+              <Content>
+                <DataClassMeta Name="ManualEventInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="EventTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="TaskType" PropertyType="ManualEventTaskType" />
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabAoEquipment" />
+                    <cdm:PropertyMeta Name="Argument" PropertyType="object" />
+                    <cdm:PropertyMeta Name="Note" PropertyType="string" Description="Debugging 용도" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ManualEventContext">
+              <Content>
+                <DataClassMeta Name="ManualEventContext" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="WakeUpEqpsNow" PropertyType="List&lt;string&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;string&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="BBEqpsNow" PropertyType="List&lt;string&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;string&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="WakeUpTimesByEqp" PropertyType="Dictionary&lt;string,List&lt;System.DateTime&gt;&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;string,List&lt;System.DateTime&gt;&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="BreakBatchWakeUpTime" PropertyType="Dictionary&lt;string,List&lt;System.DateTime&gt;&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;string,List&lt;System.DateTime&gt;&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StackPMInfo">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="StackPMInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="PMCode" PropertyType="string" />
+                    <cdm:PropertyMeta Name="PreInhibitDays" PropertyType="double" />
+                    <cdm:PropertyMeta Name="PostInhibitDays" PropertyType="double" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>PMCode</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="CycleTimeInfo">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="CycleTimeInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="PartGroup" PropertyType="string" IsPrimaryKey="True" />
+                    <cdm:PropertyMeta Name="PartID" PropertyType="string" IsPrimaryKey="True" />
+                    <cdm:PropertyMeta Name="StepID" PropertyType="string" IsPrimaryKey="True" />
+                    <cdm:PropertyMeta Name="LayerID" PropertyType="int" IsPrimaryKey="True" />
+                    <cdm:PropertyMeta Name="AreaID" PropertyType="string" IsPrimaryKey="True" />
+                    <cdm:PropertyMeta Name="EqpID" PropertyType="string" IsPrimaryKey="True" />
+                    <cdm:PropertyMeta Name="TotalTAT" PropertyType="double" IsConst="True">
+                      <DefaultValue>
+                        <String>=MoveQtySum &gt; 0 ? TotalTATWeightedSum / MoveQtySum : TotalTATWeightedSum</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="WaitTAT" PropertyType="double" IsConst="True">
+                      <DefaultValue>
+                        <String>=MoveQtySum &gt; 0 ? WaitTATWeightedSum / MoveQtySum : WaitTATWeightedSum</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="RunTAT" PropertyType="double" IsConst="True">
+                      <DefaultValue>
+                        <String>=MoveQtySum &gt; 0 ? RunTATWeightedSum / MoveQtySum : RunTATWeightedSum</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="TotalTATWeightedSum" PropertyType="double" />
+                    <cdm:PropertyMeta Name="WaitTATWeightedSum" PropertyType="double" />
+                    <cdm:PropertyMeta Name="RunTATWeightedSum" PropertyType="double" />
+                    <cdm:PropertyMeta Name="MoveQtySum" PropertyType="double" />
+                    <cdm:PropertyMeta Name="WaitTATSimple" PropertyType="double" IsConst="True">
+                      <DefaultValue>
+                        <String>=WaitTATSum / LotCount</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="WaitTATSum" PropertyType="double" />
+                    <cdm:PropertyMeta Name="LotCount" PropertyType="double" />
+                    <cdm:PropertyMeta Name="Eqp" PropertyType="FabSemiconEqp" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="PartStepView">
+                          <Keys Capacity="4">
+                            <String>PartID</String>
+                            <String>StepID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+              <Children Capacity="4">
+                <FDataClassItem Name="CycleTimePeriodic">
+                  <Content>
+                    <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="CycleTimePeriodic" ToStringExpr="">
+                      <BaseValues>
+                        <Entry>
+                          <String>TotalTAT</String>
+                          <String>=MoveQtySum &gt; 0 ? TotalTATWeightedSum / MoveQtySum : TotalTATWeightedSum</String>
+                        </Entry>
+                        <Entry>
+                          <String>WaitTAT</String>
+                          <String>=MoveQtySum &gt; 0 ? WaitTATWeightedSum / MoveQtySum : WaitTATWeightedSum</String>
+                        </Entry>
+                        <Entry>
+                          <String>RunTAT</String>
+                          <String>=MoveQtySum &gt; 0 ? RunTATWeightedSum / MoveQtySum : RunTATWeightedSum</String>
+                        </Entry>
+                        <Entry>
+                          <String>WaitTATSimple</String>
+                          <String>=WaitTATSum / LotCount</String>
+                        </Entry>
+                      </BaseValues>
+                      <BaseKeys Capacity="8">
+                        <String>PartGroup</String>
+                        <String>PartID</String>
+                        <String>StepID</String>
+                        <String>LayerID</String>
+                        <String>AreaID</String>
+                        <String>EqpID</String>
+                      </BaseKeys>
+                      <Properties>
+                        <cdm:PropertyMeta Name="TargetDate" PropertyType="DateTime" />
+                        <cdm:PropertyMeta Name="PhotoGen" PropertyType="string" />
+                        <cdm:PropertyMeta Name="StackType" PropertyType="string" />
+                        <cdm:PropertyMeta Name="ReworkCnt" PropertyType="int" />
+                        <cdm:PropertyMeta Name="ReworkMin" PropertyType="double" />
+                        <cdm:PropertyMeta Name="ScrapCnt" PropertyType="int" />
+                        <cdm:PropertyMeta Name="ScrapMin" PropertyType="double" />
+                        <cdm:PropertyMeta Name="ChuckCnt" PropertyType="int" />
+                        <cdm:PropertyMeta Name="ChuckMin" PropertyType="double" />
+                        <cdm:PropertyMeta Name="ReticleCnt" PropertyType="int" />
+                        <cdm:PropertyMeta Name="ReticleMin" PropertyType="double" />
+                      </Properties>
+                      <ViewInfo>
+                        <cdm:DataViewInfo>
+                          <Items Capacity="4">
+                            <cdm:DataViewItem Name="PartStepView">
+                              <Keys Capacity="4">
+                                <String>PartID</String>
+                                <String>StepID</String>
+                              </Keys>
+                            </cdm:DataViewItem>
+                          </Items>
+                        </cdm:DataViewInfo>
+                      </ViewInfo>
+                    </DataClassMeta>
+                  </Content>
+                </FDataClassItem>
+              </Children>
+            </FDataClassItem>
+            <FDataClassItem Name="TATSet">
+              <Content>
+                <DataClassMeta Name="TATSet" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="TotalTAT" PropertyType="double" />
+                    <cdm:PropertyMeta Name="WaitTAT" PropertyType="double" />
+                    <cdm:PropertyMeta Name="RunTAT" PropertyType="double" />
+                    <cdm:PropertyMeta Name="MoveQty" PropertyType="int" />
+                    <cdm:PropertyMeta Name="WaitTATSimple" PropertyType="double" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="ReworkInfo">
+              <Content>
+                <DataClassMeta Name="ReworkInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="ReworkRate" PropertyType="double" />
+                    <cdm:PropertyMeta Name="ProcessingType" PropertyType="ReworkProcessingType" />
+                    <cdm:PropertyMeta Name="ReworkHoldTime" PropertyType="TimeSpan" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+              <Children Capacity="4">
+                <FDataClassItem Name="EqpReworkInfo">
+                  <Content>
+                    <DataClassMeta Name="EqpReworkInfo" ToStringExpr="">
+                      <Properties>
+                        <cdm:PropertyMeta Name="PmCodes" PropertyType="List&lt;string&gt;">
+                          <DefaultValue>
+                            <String>= new List&lt;string&gt;()</String>
+                          </DefaultValue>
+                        </cdm:PropertyMeta>
+                        <cdm:PropertyMeta Name="ReworkPeriodDays" PropertyType="double" />
+                        <cdm:PropertyMeta Name="IsActive" PropertyType="bool" />
+                      </Properties>
+                    </DataClassMeta>
+                  </Content>
+                </FDataClassItem>
+                <FDataClassItem Name="StepReworkInfo">
+                  <Content>
+                    <DataClassMeta Name="StepReworkInfo" ToStringExpr="">
+                      <Properties>
+                        <cdm:PropertyMeta Name="ReturnStep" PropertyType="FabSemiconStep" />
+                        <cdm:PropertyMeta Name="ReworkRoute" PropertyType="FabSemiconProcess" />
+                        <cdm:PropertyMeta Name="ReworkStep" PropertyType="FabSemiconStep" />
+                      </Properties>
+                    </DataClassMeta>
+                  </Content>
+                </FDataClassItem>
+              </Children>
+            </FDataClassItem>
+            <FDataClassItem Name="ReworkActivation">
+              <Content>
+                <DataClassMeta Name="ReworkActivation" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Info" PropertyType="ReworkInfo" />
+                    <cdm:PropertyMeta Name="ReworkStartStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="IsStarted" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsHoldTriggered" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="ReworkTriggerStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="QualityLossType" PropertyType="QualityLossType" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="UnitBatchInfo">
+              <Content>
+                <DataClassMeta Name="UnitBatchInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="MaxPortCount" PropertyType="int">
+                      <DefaultValue>
+                        <String>=9999</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="HasFinitePort" PropertyType="bool" IsConst="True">
+                      <DefaultValue>
+                        <String>=MaxPortCount &lt; 9999</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="UnitBatchSize" PropertyType="double">
+                      <DefaultValue>
+                        <String>=InputMart.Instance.LotSize</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabToolData">
+              <Content>
+                <DataClassMeta Name="FabToolData" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css3:IToolData" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="ToolingArranges" PropertyType="Mozart.Collections.MultiDictionary&lt;string,custom.FabTooling&gt;">
+                      <DefaultValue>
+                        <String>= new Mozart.Collections.MultiDictionary&lt;string,custom.FabTooling&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ToolingItems" PropertyType="List&lt;Tuple&lt;ToolingType, string&gt;&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;Tuple&lt;ToolingType, string&gt;&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpLocation">
+              <Content>
+                <DataClassMeta Name="EqpLocation" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Bay" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Region" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Building" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Floor" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Cell" PropertyType="string" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="CrossFabLimit">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="CrossFabLimit" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="Level" PropertyType="string" />
+                    <cdm:PropertyMeta Name="From" PropertyType="string" />
+                    <cdm:PropertyMeta Name="To" PropertyType="string" />
+                    <cdm:PropertyMeta Name="InitLotQty" PropertyType="int" />
+                    <cdm:PropertyMeta Name="LimitLotQty" PropertyType="int?" />
+                    <cdm:PropertyMeta Name="QueueForAnHour" PropertyType="Queue&lt;DateTime&gt;">
+                      <DefaultValue>
+                        <String>= new Queue&lt;DateTime&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>From</String>
+                            <String>To</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="EqpTooling">
+              <Content>
+                <DataClassMeta Name="EqpTooling" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="ToolLimitCount" PropertyType="int">
+                      <DefaultValue>
+                        <String>20</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="IsNeedReticle" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="ReticleList" PropertyType="List&lt;FabReticle&gt;" />
+                    <cdm:PropertyMeta Name="SelectableReticleList" PropertyType="List&lt;FabReticle&gt;" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StepCapaInfo">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="StepCapaInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="CapaKey" PropertyType="string" />
+                    <cdm:PropertyMeta Name="CapaLimit" PropertyType="double" />
+                    <cdm:PropertyMeta Name="CurrentCapa" PropertyType="double" />
+                    <cdm:PropertyMeta Name="CapaWaitingLots" PropertyType="List&lt;FabSemiconLot&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;FabSemiconLot&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="RollingIndex" PropertyType="int">
+                      <DefaultValue>
+                        <String>=1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>CapaKey</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="CustomDispatchInfo">
+              <Content>
+                <DataClassMeta Name="CustomDispatchInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="DispatchType" PropertyType="CustomDispatchType" />
+                    <cdm:PropertyMeta Name="Preset" PropertyType="WeightPreset" />
+                    <cdm:PropertyMeta Name="InitialWipCount" PropertyType="int" />
+                    <cdm:PropertyMeta Name="FilteredWipCount" PropertyType="int" />
+                    <cdm:PropertyMeta Name="PortID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="FilteredWipLog" PropertyType="string" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabLotBatch">
+              <Content>
+                <DataClassMeta Name="FabLotBatch" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css:LotBatch" />
+                  </BaseClass>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+          </Children>
+        </FDataClassFolder>
+        <FDataClassFolder Name="Common">
+          <Children Capacity="8">
+            <FDataClassItem Name="FabProduct">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabProduct" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:IProduct" def:name="reflectedbasetypeinfo1" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="LineID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ProductID" PropertyType="string" Description="MFG_PART_ID" />
+                    <cdm:PropertyMeta Name="StdProductID" PropertyType="string" Description="PRODUCT_ID" />
+                    <cdm:PropertyMeta Name="Process" PropertyType="Mozart.SeePlan.Semicon.DataModel.IProcess" />
+                    <cdm:PropertyMeta Name="ProcessID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="PartGroup" PropertyType="string" />
+                    <cdm:PropertyMeta Name="PartID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StdProduct" PropertyType="StdProduct" />
+                    <cdm:PropertyMeta Name="MainRoute" PropertyType="FabSemiconProcess" IsConst="True">
+                      <DefaultValue>
+                        <String>=Process as FabSemiconProcess</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="StdRoute" PropertyType="FabSemiconProcess" IsConst="True">
+                      <DefaultValue>
+                        <String>=StdProduct.Route</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="BOMInfo" PropertyType="custom.BOMInfo" />
+                    <cdm:PropertyMeta Name="BOMContributionRatio" PropertyType="float">
+                      <DefaultValue>
+                        <String>=1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="ProcessView">
+                          <Keys Capacity="4">
+                            <String>ProcessID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                        <cdm:DataViewItem Name="MfgPartView">
+                          <Keys Capacity="4">
+                            <String>ProductID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                        <cdm:DataViewItem Name="PartView">
+                          <Keys Capacity="4">
+                            <String>PartID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabWipInfo">
+              <Content>
+                <DataClassMeta GenerateContainer="True" ContainerType="Dictionary" ContainerKeys="string" Name="FabWipInfo" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:IWipInfo" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="LineID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="LotID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Product" PropertyType="Mozart.SeePlan.Semicon.DataModel.IProduct" />
+                    <cdm:PropertyMeta Name="Process" PropertyType="Mozart.SeePlan.Semicon.DataModel.SemiconProcess" />
+                    <cdm:PropertyMeta Name="UnitQty" PropertyType="double" />
+                    <cdm:PropertyMeta Name="DueDate" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="FabInTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="InitialStep" PropertyType="Mozart.SeePlan.Semicon.DataModel.SemiconStep" />
+                    <cdm:PropertyMeta Name="InitialEqp" PropertyType="Mozart.SeePlan.Semicon.DataModel.SemiconEqp" />
+                    <cdm:PropertyMeta Name="CurrentState" PropertyType="Mozart.SeePlan.Simulation.EntityState" />
+                    <cdm:PropertyMeta Name="WipProductID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="WipProcessID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="WipStepID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="WipEqpID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="WipState" PropertyType="string" />
+                    <cdm:PropertyMeta Name="WipStateTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="LastTrackInTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="LastProcessStartTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="LastTrackOutTime" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="IsBohRun" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="HoldTime" PropertyType="Mozart.Simulation.Engine.Time" />
+                    <cdm:PropertyMeta Name="LotPriorityStatus" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StableEqp" PropertyType="FabSemiconEqp" />
+                    <cdm:PropertyMeta Name="HoldCode" PropertyType="string" />
+                    <cdm:PropertyMeta Name="WipParamDict" PropertyType="Dictionary&lt;string,string&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string,string&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="MergeDict" PropertyType="Dictionary&lt;string,MergeInfo&gt;">
+                      <DefaultValue>
+                        <String>=new Dictionary&lt;string, MergeInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="Lot" PropertyType="FabSemiconLot" />
+                    <cdm:PropertyMeta Name="ParentWip" PropertyType="FabWipInfo" />
+                    <cdm:PropertyMeta Name="ReturnStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="IsMergeOut" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="FabProduct" PropertyType="FabProduct" IsConst="True">
+                      <DefaultValue>
+                        <String>=Product as FabProduct</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="DemandID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="HoldTimePdfConfig" PropertyType="StochasticConfig" />
+                    <cdm:PropertyMeta Name="LotPriorityValue" PropertyType="int" />
+                    <cdm:PropertyMeta Name="IsJobPrep" PropertyType="bool" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconProcess">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabSemiconProcess" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:SemiconProcess" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="RouteType" PropertyType="RouteType" />
+                    <cdm:PropertyMeta Name="PotDays" PropertyType="double" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>ProcessID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconStep">
+              <Content>
+                <DataClassMeta Name="FabSemiconStep" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:SemiconStep" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="AreaID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ReworkInfo" PropertyType="StepReworkInfo" />
+                    <cdm:PropertyMeta Name="PartStepDict" PropertyType="Dictionary&lt;string,PartStepAttribute&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;string,PartStepAttribute&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="LayerID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="IsPhotoStep" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="StepLevel" PropertyType="int" />
+                    <cdm:PropertyMeta Name="RunCT" PropertyType="TimeSpan" />
+                    <cdm:PropertyMeta Name="WaitCT" PropertyType="TimeSpan" />
+                    <cdm:PropertyMeta Name="CT" PropertyType="TimeSpan" />
+                    <cdm:PropertyMeta Name="CumulativeYield" PropertyType="double" />
+                    <cdm:PropertyMeta Name="PotDays" PropertyType="double" />
+                    <cdm:PropertyMeta Name="IsSimulationStep" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="IsWipMoveCollectStepLevel" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="ReworkNextStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="IsReworkDummyStep" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="StepYieldRate" PropertyType="double">
+                      <DefaultValue>
+                        <String>=1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="IsStdStep" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="SampleRate" PropertyType="double">
+                      <DefaultValue>
+                        <String>=1</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="StepSkipTime" PropertyType="Mozart.Simulation.Engine.Time">
+                      <DefaultValue>
+                        <String>=Mozart.Simulation.Engine.Time.Zero</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="StandardizedPotDays" PropertyType="double" />
+                    <cdm:PropertyMeta Name="CapaInfo" PropertyType="StepCapaInfo" />
+                    <cdm:PropertyMeta Name="CapaMultiplier" PropertyType="double" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="StdProduct">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="StdProduct" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo ref:name="reflectedbasetypeinfo1" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="LineID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StdProductID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="Process" PropertyType="Mozart.SeePlan.Semicon.DataModel.IProcess" />
+                    <cdm:PropertyMeta Name="ProductID" PropertyType="string" IsConst="True">
+                      <DefaultValue>
+                        <String>=StdProductID</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="Products" PropertyType="List&lt;FabProduct&gt;">
+                      <DefaultValue>
+                        <String>=new List&lt;FabProduct&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="Route" PropertyType="FabSemiconProcess" IsConst="True">
+                      <DefaultValue>
+                        <String>=Process as FabSemiconProcess</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>StdProductID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="PartStepAttribute">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="PartStepAttribute" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="PartID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="StepID" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ArrangeDict" PropertyType="Mozart.Collections.MultiDictionary&lt;DateTime,EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>= new Mozart.Collections.MultiDictionary&lt;DateTime,EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="CurrentArranges" PropertyType="List&lt;EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="BackupArranges" PropertyType="List&lt;EqpArrange&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;EqpArrange&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="PhotoGen" PropertyType="string" />
+                    <cdm:PropertyMeta Name="ArrangeCalendar" PropertyType="List&lt;ArrangeSchedule&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;ArrangeSchedule&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="RouteSteps" PropertyType="List&lt;FabSemiconStep&gt;">
+                      <DefaultValue>
+                        <String>= new List&lt;FabSemiconStep&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="StackInfoDict" PropertyType="Dictionary&lt;FabSemiconStep,StackStepInfo&gt;">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;FabSemiconStep,StackStepInfo&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="MaxStepLevel" PropertyType="int" />
+                    <cdm:PropertyMeta Name="LayerID" PropertyType="int" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>PartID</String>
+                            <String>StepID</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="BOMInfo">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="BOMInfo" ToStringExpr="">
+                  <Properties>
+                    <cdm:PropertyMeta Name="ToPart" PropertyType="FabProduct" />
+                    <cdm:PropertyMeta Name="FromParts" PropertyType="Dictionary&lt;FabProduct,float&gt;" Description="Key: FromPart, Value: FromQty">
+                      <DefaultValue>
+                        <String>= new Dictionary&lt;FabProduct,float&gt;()</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ToRoute" PropertyType="FabSemiconProcess" />
+                    <cdm:PropertyMeta Name="MergeStep" PropertyType="FabSemiconStep" />
+                    <cdm:PropertyMeta Name="BOMLevel" PropertyType="int" />
+                    <cdm:PropertyMeta Name="MergeableKey" PropertyType="string">
+                      <DefaultValue>
+                        <String>*</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                    <cdm:PropertyMeta Name="ProcessedSteps" PropertyType="HashSet&lt;string&gt;" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>ToPart</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                        <cdm:DataViewItem Name="MergeKeyView">
+                          <Keys Capacity="4">
+                            <String>MergeableKey</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+          </Children>
+        </FDataClassFolder>
+        <FDataClassFolder Name="Pegging">
+          <Children Capacity="8">
+            <FDataClassItem Name="FabSemiconMoMaster">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabSemiconMoMaster" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css4:SemiconMoMaster" />
+                  </BaseClass>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>Product</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconMoPlan">
+              <Content>
+                <DataClassMeta MapType="DEMAND" Name="FabSemiconMoPlan" ToStringExpr="">
+                  <BaseMappings>
+                    <Entry>
+                      <String>Qty</String>
+                      <String>WAFER_QTY</String>
+                    </Entry>
+                    <Entry>
+                      <String>DueDate</String>
+                      <String>DUE_DATE</String>
+                    </Entry>
+                  </BaseMappings>
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css4:SemiconMoPlan" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Yield" PropertyType="string" MapField="LINE_YIELD" />
+                    <cdm:PropertyMeta Name="ForwardPegRemainQty" PropertyType="double" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconPegTarget">
+              <Content>
+                <DataClassMeta Name="FabSemiconPegTarget" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css4:SemiconPegTarget" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="FabInPlanRemainQty" PropertyType="double" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabPlanWip">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabPlanWip" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css4:PlanWip" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="StdProduct" PropertyType="StdProduct" />
+                    <cdm:PropertyMeta Name="IsRunWip" PropertyType="bool" />
+                    <cdm:PropertyMeta Name="LineID" PropertyType="string" />
+                  </Properties>
+                  <ViewInfo>
+                    <cdm:DataViewInfo>
+                      <Items Capacity="4">
+                        <cdm:DataViewItem Name="View">
+                          <Keys Capacity="4">
+                            <String>MapStep</String>
+                          </Keys>
+                        </cdm:DataViewItem>
+                      </Items>
+                    </cdm:DataViewInfo>
+                  </ViewInfo>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconPegPart">
+              <Content>
+                <DataClassMeta Name="FabSemiconPegPart" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css4:SemiconPegPart" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="ProductID" PropertyType="string" IsConst="True">
+                      <DefaultValue>
+                        <String>=Product.ProductID</String>
+                      </DefaultValue>
+                    </cdm:PropertyMeta>
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabProdPlan">
+              <Content>
+                <DataClassMeta IsEntityObject="True" GenerateContainer="True" ContainerType="EntityTable" Name="FabProdPlan" ToStringExpr="">
+                  <Interfaces>
+                    <cdm:ReflectedBaseTypeInfo TargetType="css2:IProductionPlan" />
+                  </Interfaces>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Product" PropertyType="Mozart.SeePlan.Semicon.DataModel.IProduct" />
+                    <cdm:PropertyMeta Name="Process" PropertyType="Mozart.SeePlan.Semicon.DataModel.SemiconProcess" />
+                    <cdm:PropertyMeta Name="StartDate" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="EndDate" PropertyType="DateTime" />
+                    <cdm:PropertyMeta Name="PlanQty" PropertyType="int" />
+                    <cdm:PropertyMeta Name="Yield" PropertyType="float" />
+                    <cdm:PropertyMeta Name="WWSequence" PropertyType="string" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+            <FDataClassItem Name="FabSemiconStepTarget">
+              <Content>
+                <DataClassMeta Name="FabSemiconStepTarget" ToStringExpr="">
+                  <BaseClass>
+                    <cdm:ReflectedBaseTypeInfo TargetType="csd:StepTarget" />
+                  </BaseClass>
+                  <Properties>
+                    <cdm:PropertyMeta Name="Mo" PropertyType="FabSemiconMoPlan" />
+                  </Properties>
+                </DataClassMeta>
+              </Content>
+            </FDataClassItem>
+          </Children>
+        </FDataClassFolder>
+      </Children>
+    </FDataClassRoot>
+  </Content>
+</vxml:Document>
