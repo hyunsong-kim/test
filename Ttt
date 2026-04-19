@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Threading;
+
+namespace Utils
+{
+    /// <summary>
+    /// 메서드별 호출 횟수 + 실행 시간 프로파일링
+    /// </summary>
+    public static class MethodProfiler
+    {
+        private class ProfileData
+        {
+            public long TotalTicks;
+            public long Count;
+        }
+
+        private static readonly ConcurrentDictionary<string, ProfileData> _data = new();
+
+        /// <summary>
+        /// 메서드 시작 시 호출 (using 패턴)
+        /// </summary>
+        public static IDisposable Track([CallerMemberName] string methodName = "")
+        {
+            return new ProfileScope(methodName);
+        }
+
+        private sealed class ProfileScope : IDisposable
+        {
+            private readonly string _methodName;
+            private readonly Stopwatch _sw;
+
+            public ProfileScope(string methodName)
+            {
+                _methodName = methodName;
+                _sw = Stopwatch.StartNew();
+            }
+
+            public void Dispose()
+            {
+                _sw.Stop();
+
+                var entry = _data.GetOrAdd(_methodName, _ => new ProfileData());
+
+                Interlocked.Add(ref entry.TotalTicks, _sw.ElapsedTicks);
+                Interlocked.Increment(ref entry.Count);
+            }
+        }
+
+        /// <summary>
+        /// 결과 출력
+        /// </summary>
+        public static void Print()
+        {
+            Console.WriteLine("===== Method Profiler Result =====");
+
+            foreach (var kv in _data)
+            {
+                double totalMs = kv.Value.TotalTicks * 1000.0 / Stopwatch.Frequency;
+                double avgMs = kv.Value.Count == 0 ? 0 : totalMs / kv.Value.Count;
+
+                Console.WriteLine(
+                    $"{kv.Key} | 호출수: {kv.Value.Count} | 총시간: {totalMs:F3} ms | 평균: {avgMs:F3} ms");
+            }
+        }
+
+        /// <summary>
+        /// 데이터 초기화
+        /// </summary>
+        public static void Reset()
+        {
+            _data.Clear();
+        }
+    }
+}
