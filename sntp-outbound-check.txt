@@ -1,0 +1,213 @@
+============================================================
+왜 내 PC에서는 outbound UDP 123이
+설정 없이도 잘 통과하는가
+============================================================
+
+[ 핵심 요약 ]
+
+Windows 방화벽은 inbound와 outbound가
+비대칭으로 동작한다.
+
+  - Inbound  : 기본 Block
+               (명시 허용 규칙 없으면 차단)
+  - Outbound : 기본 Allow
+               (명시 차단 규칙 없으면 통과)
+
+따라서 일반 개발 PC는 아무 설정을 안 했기
+때문에 UDP 123이 그냥 나간다.
+
+보안 사이트는 누군가 명시적으로 outbound를
+막았기 때문에 SntpClient의 race가 노출된다.
+
+
+------------------------------------------------------------
+[ 그 외 잘 되는 이유 ]
+------------------------------------------------------------
+
+- 가정망/개발망에는 경계 방화벽(UTM)이 없거나
+  outbound NTP를 허용한다.
+- 개발 PC에는 outbound 검사하는 EDR이
+  없거나 정책이 약하다.
+- DNS가 ISP/Google DNS라 NTP 호스트가
+  정상 해석된다.
+- UDP는 프록시 강제 대상이 아니다.
+
+
+============================================================
+확인 명령 (PowerShell, 관리자 권장)
+============================================================
+
+
+------------------------------------------------------------
+[1] Windows Firewall 기본 동작
+------------------------------------------------------------
+
+  Get-NetFirewallProfile |
+    Select-Object Name, Enabled,
+      DefaultInboundAction,
+      DefaultOutboundAction
+
+체크 포인트
+  - DefaultOutboundAction = Allow
+      -> 설정 없이 통과되는 이유.
+         대부분의 개발 PC가 이 상태.
+  - DefaultOutboundAction = Block
+      -> 명시 허용 규칙이 있어야 통과.
+         보안 사이트가 이 상태로 바꾼 경우 많음.
+
+
+------------------------------------------------------------
+[2] UDP 123 차단 규칙 존재 여부
+------------------------------------------------------------
+
+  Get-NetFirewallRule -Action Block -Enabled True |
+    ForEach-Object {
+      $r = $_
+      $p = $_ | Get-NetFirewallPortFilter
+      if ($p.Protocol -eq 'UDP' -and
+          ($p.RemotePort -match '123' -or
+           $p.LocalPort  -match '123')) {
+        [PSCustomObject]@{
+          Name  = $r.DisplayName
+          Dir   = $r.Direction
+          RPort = $p.RemotePort
+          LPort = $p.LocalPort
+        }
+      }
+    }
+
+체크 포인트
+  - 결과 없음
+      -> NTP 관련 차단 규칙 없음.
+         outbound 기본 Allow와 결합되어 통과.
+
+
+------------------------------------------------------------
+[3] 실제로 통과하는지 직접 확인
+------------------------------------------------------------
+
+  w32tm /stripchart `
+    /computer:time.nist.gov `
+    /samples:2 /dataonly
+
+체크 포인트
+  - 응답 시간(ms)과 시간 오프셋이 표시되면
+    outbound 123 정상 통과.
+
+또는 SntpClient와 같은 패킷을 직접 보내기:
+
+  $c = [System.Net.Sockets.UdpClient]::new()
+  $c.Client.ReceiveTimeout = 2000
+  try {
+    $c.Connect("time.nist.gov", 123)
+    $req = [byte[]]::new(48)
+    $req[0] = 0x1B
+    $c.Send($req, 48) | Out-Null
+    $ep = [System.Net.IPEndPoint]::new(
+      [System.Net.IPAddress]::Any, 0)
+    $r = $c.Receive([ref]$ep)
+    "OK: $($r.Length) bytes from $ep"
+  } catch {
+    "FAIL: $($_.Exception.Message)"
+  } finally {
+    $c.Close()
+  }
+
+체크 포인트
+  - "OK: 48 bytes from ..." 표시
+      -> SntpClient와 동일 패킷이
+         응답까지 받음.
+
+
+------------------------------------------------------------
+[4] 모델 프로세스가 실제로 사용하는지
+    (라이브 캡처)
+------------------------------------------------------------
+
+관리자 PowerShell:
+
+  pktmon filter remove
+  pktmon filter add NTP -t UDP -p 123
+  pktmon start --capture --pkt-size 64 `
+    --file-name C:\Temp\ntp_local.etl
+
+  # 여기서 모델 실행
+
+  pktmon stop
+  pktmon etl2txt C:\Temp\ntp_local.etl `
+    -o C:\Temp\ntp_local.txt
+  notepad C:\Temp\ntp_local.txt
+
+체크 포인트
+  - 송신 패킷에 이어 수신 패킷이 들어옴
+      -> 정상 동작.
+  - 송수신이 모두 보이면 race condition
+    트리거가 일어날 일이 거의 없음.
+      -> 그래서 개발 PC에선 재현이 안 됨.
+
+
+------------------------------------------------------------
+[5] 그룹 정책으로 outbound가 강제되었는지
+------------------------------------------------------------
+
+  Get-NetFirewallSetting -PolicyStore ActiveStore |
+    Select-Object *
+
+  gpresult /Scope Computer /v 2>$null |
+    Select-String `
+      -Pattern "Windows Firewall|Outbound" `
+      -Context 0,3
+
+체크 포인트
+  - 결과가 비어 있거나 GPO가 적용 안 됨
+      -> 도메인 정책 통제를 안 받음.
+         개인 개발 PC의 전형적 모습.
+
+
+============================================================
+개발 PC vs 보안 사이트 비교
+============================================================
+
+[ DefaultOutboundAction ]
+  개발 PC      : Allow
+  보안 사이트  : Block 가능성 높음
+
+[ UDP 123 Block 규칙 ]
+  개발 PC      : 없음
+  보안 사이트  : 있을 수 있음
+
+[ w32tm /stripchart ]
+  개발 PC      : 응답 OK
+  보안 사이트  : 타임아웃
+
+[ pktmon 캡처 ]
+  개발 PC      : 송수신 모두 보임
+  보안 사이트  : 송신만, 또는 둘 다 없음
+
+[ EDR / 3rd-party LSP ]
+  개발 PC      : 없음 / 약함
+  보안 사이트  : 강한 후킹 존재
+
+[ 경계 방화벽 (UTM) ]
+  개발 PC      : 없음
+  보안 사이트  : UTM이 NTP 차단
+
+[ 그룹 정책 ]
+  개발 PC      : 미적용
+  보안 사이트  : 도메인 정책 강제
+
+
+============================================================
+결론
+============================================================
+
+"왜 내 PC에선 잘 되나"의 답은
+
+  막은 사람이 아무도 없고,
+  Windows의 outbound 기본값이 Allow이기 때문.
+
+보안 사이트는 누군가 명시적으로 outbound NTP를
+통제하면서 비동기 콜백을 에러 경로로 끌고 가고,
+그것이 SntpClient의 race를 가시화시키는 구조다.
+
+============================================================
