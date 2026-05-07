@@ -1,0 +1,1 @@
+"== PersistentStore (로컬 설정) =="Get-NetFirewallProfile -PolicyStore PersistentStore |  Select-Object Name, DefaultOutboundAction | Format-Table -AutoSize"== ActiveStore (실제 적용 = 로컬 + GPO 병합) =="Get-NetFirewallProfile -PolicyStore ActiveStore |  Select-Object Name, DefaultOutboundAction | Format-Table -AutoSize
