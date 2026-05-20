@@ -1,0 +1,25 @@
+ManualResetEventSlim peekSignal;
+
+lock (obj)
+{
+    if (this.nextEvent != null)
+        return;
+
+    peekSignal = new ManualResetEventSlim(false);
+    this.peekEventSignal = peekSignal;
+}
+
+try
+{
+    peekSignal.Wait();
+}
+finally
+{
+    lock (obj)
+    {
+        if (ReferenceEquals(this.peekEventSignal, peekSignal))
+            this.peekEventSignal = null;
+    }
+
+    peekSignal.Dispose();
+}
